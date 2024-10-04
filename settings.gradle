@@ -1,0 +1,10 @@
+pluginManagement {
+    repositories {
+        maven {
+            url "$mavenPublicURL"
+            allowInsecureProtocol true
+        }
+    }
+}
+
+rootProject.name = 'redmine-team-tracker'
