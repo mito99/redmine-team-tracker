@@ -5,7 +5,11 @@ import org.junit.jupiter.api.Test;
 public class AppMainTest {
 
   @Test
-  void test() {
-    AppMain.main("2018-10-25", "2018-10-25");
+  void 一部() {
+    AppMain.main(
+        "redmine-team-tracker",
+        "-s", "2024-05-07",
+        "-e", "2024-05-08");
   }
+
 }
