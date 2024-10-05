@@ -1,32 +1,29 @@
 plugins {
-    id 'application'
-    id 'eclipse'
-    id "io.freefair.lombok" version "8.10"
-    id 'maven-publish'
-    id "com.gradleup.shadow" version "8.3.2"
+  id 'application'
+  id 'eclipse'
+  id "io.freefair.lombok" version "8.10"
+  id 'com.gradleup.shadow' version '8.3.3'
 }
 
-group = 'jp.hitachi.mineo.tool'
+group = 'com.github.mito99'
 version = "1.0.0"
 sourceCompatibility = '1.8'
 
 application {
-    mainClass = 'jp.hitachi.mineo.tool.redmine_team_tracker'
+  mainClass = 'com.github.mito99.redmine_team_tracker.AppMain'
 }
 
 repositories {
-    maven {
-      url "$mavenPublicURL"
-      allowInsecureProtocol true
-    }
+  mavenCentral()
 }
 
 dependencies {
   implementation 'info.picocli:picocli:4.7.6'
   implementation 'ch.qos.logback:logback-classic:1.2.11'
-	implementation 'org.yaml:snakeyaml:1.29'
+  implementation 'org.yaml:snakeyaml:1.29'
   implementation 'mysql:mysql-connector-java:8.0.32'
   implementation 'org.xerial:sqlite-jdbc:3.36.0.3'
+  implementation 'io.github.cdimascio:dotenv-java:2.3.1'
 
   testImplementation 'org.assertj:assertj-core:3.15.0'
   testImplementation 'org.junit.jupiter:junit-jupiter:5.8.2'
@@ -36,28 +33,5 @@ dependencies {
 }
 
 tasks.withType(JavaCompile) {
-    options.encoding = 'UTF-8'
-}
-
-startShadowScripts {
-    doLast {
-        def windowsScriptFile = file getWindowsScript()
-        def unixScriptFile    = file getUnixScript()
-
-        windowsScriptFile.text = windowsScriptFile.text.replace('%APP_HOME%\\lib', '%APP_HOME%\\libs')
-        unixScriptFile.text = unixScriptFile.text.replace('$APP_HOME/lib', '$APP_HOME/libs')
-    }
-}
-
-publishing {
-    repositories {
-        maven {
-            credentials {
-                username "$mavenUser"
-                password "$mavenPassword"
-            }
-            url "$mavenPublishURL"
-            allowInsecureProtocol true
-        }
-    }
+  options.encoding = 'UTF-8'
 }

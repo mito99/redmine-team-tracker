@@ -3,5 +3,12 @@
 
 # Ignore Gradle build output directory
 build
+bin
 
 output.db
+
+.project
+.settings
+.classpath
+
+.env
